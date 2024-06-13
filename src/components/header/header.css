@@ -147,6 +147,9 @@
   background-color: var(--color-primary);
   margin-bottom: 3em;
 }
+.halt3 img{
+  width: 250px;
+}
 /* ==============================  MEDIA QUERYS HEADERS ==============================*/
 /* ===================================================================================*/
 @media (max-width: 1024px) {
