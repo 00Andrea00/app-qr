@@ -1,0 +1,51 @@
+{
+  "name": "app-qr",
+  "private": true,
+  "description": "Aplicación para crear códigos QR a partir de una base de datos",
+  "version": "0.1.0",
+  "author": "Andrea Cuenca <andreacuencardzo@gmail.com>",
+  "dependencies": {
+    "downloadjs": "^1.4.7",
+    "gatsby": "^5.13.5",
+    "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-manifest": "^5.13.1",
+    "gatsby-plugin-sharp": "^5.13.1",
+    "gatsby-source-filesystem": "^5.13.1",
+    "gatsby-transformer-sharp": "^5.13.1",
+    "html-to-image": "^1.11.11",
+    "js-cookie": "^3.0.5",
+    "leaflet": "^1.9.4",
+    "qrcode.react": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "react-share": "^5.1.0",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^6.1.11"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.1.4",
+    "prettier": "^2.8.8"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/00Andrea00/app-qr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/00Andrea00"
+  }
+}
