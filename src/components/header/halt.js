@@ -17,7 +17,7 @@ const Halt = () => {
 
   return (
     <div className="halt2" id="myHeader">
-      <Link to="/">
+      <Link to="#">
         <StaticImage // Usa StaticImage para mostrar la imagen
           src="../../images/icons/logogeneradorqr.png"
           alt="patrimonio"

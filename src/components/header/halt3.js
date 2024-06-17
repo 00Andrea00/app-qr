@@ -5,7 +5,7 @@ import "./header.css"
 import "../layout.css"
 const Halt3 = () => (
   <div className="halt3">
-      <Link to="/">
+      <Link to="#">
       <StaticImage
         src="../../images/icons/logogeneradorqr.png"
         alt="patrimonio"

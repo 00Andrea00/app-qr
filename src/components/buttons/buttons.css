@@ -93,6 +93,7 @@
   color: var(--text-color-1);
   font-family: var(--font-text);
   font-size: var(--font-s);
+  font-weight: bold;
   letter-spacing: var(--letter-space);
   padding: var(--space-2);
   margin: var(--space-2);
@@ -100,7 +101,6 @@
   border-radius: var(--btn-radius-1);
   transition: 0.4s ease-in-out;
   text-transform: uppercase;
-  text-shadow: 1px 1px 4px #282828;
   position: relative;
 }
 .btnSecondary:hover {
