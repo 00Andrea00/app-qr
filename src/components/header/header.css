@@ -133,7 +133,6 @@
   z-index: 1000;
   transition: 0.4s ease-in-out;
   background-color: var(--color-primary);
-  margin-bottom: 3em;
 }
 .halt3{
   display: flex;
@@ -149,6 +148,7 @@
 }
 .halt3 img{
   width: 300px;
+  cursor: default;
 }
 /* ==============================  MEDIA QUERYS HEADERS ==============================*/
 /* ===================================================================================*/

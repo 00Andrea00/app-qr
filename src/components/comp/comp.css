@@ -28,6 +28,9 @@ label {
     margin: 10px;
     cursor: pointer;
   }
+  .qrcolores:hover {
+    transform: scale(1.3);
+  }
 .hr{
     display:none
 }

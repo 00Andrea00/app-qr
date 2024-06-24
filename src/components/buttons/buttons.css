@@ -255,6 +255,26 @@
   font-weight: bold;
   text-decoration: underline;
 }
+.btnInfo2{
+  cursor: pointer;
+  background-color: transparent;
+  font-size: var(--font-s);
+  margin: var(--space-2);
+  border: transparent var(--btn-border-solid-1);
+  text-shadow: 0.5px 1px 4px #474747;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.1s ease;
+}
+.collapse-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+.collapse-content.open {
+  max-height: 100vh;
+}
 /* btnInfo (botón para guardar contenido) */
 /* btnSave (botón para guardar contenido) */
 .btnSave {
@@ -436,8 +456,44 @@
     display: none;
   }
 }
-
 /* btnUp (botón de subir) */
+/*btnSlider*/
+.toggle-switch2 {
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.slider2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+.slider2.on {
+  background-color: #4CAF50;
+}
+.slider2.off {
+  background-color: #ccc;
+}
+.circle2 {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 2.5px;
+  transition: transform 0.3s;
+}
+.slider2.on .circle {
+  transform: translateX(30px);
+}
+/*btnSlider*/
 /* btnProfile (botón para acceder a la página de perfil) */
 /* btnProfile (botón para acceder a la página de perfil) */
 /* btnSocialMedia (botonera mixta con botones para redes sociales ubicada en modal compartir) */

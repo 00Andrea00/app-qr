@@ -4,6 +4,8 @@ import "../buttons/buttons.css";
 import BtnClose from "./BtnClose";
 import "../modals/modal.css";
 import "../buttons/buttons.css"
+import "../buttons/BtnPrimary"
+import BtnPrimary from "../buttons/BtnPrimary";
 
 function BtnDownload({ handleDownload, handleDownload2, handleDownload3 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,15 +33,15 @@ function BtnDownload({ handleDownload, handleDownload2, handleDownload3 }) {
             </div>
             <div className="modal-body">
               <p>Seleccione el formato de descarga:</p>
-              <button onClick={handleDownload} className="btnPrimary">
+              <BtnPrimary onClick={handleDownload}>
                 Png
-              </button>
-              <button onClick={handleDownload2} className="btnPrimary">
+              </BtnPrimary>
+              <BtnPrimary onClick={handleDownload2}>
                 Jpeg
-              </button>
-              <button onClick={handleDownload3} className="btnPrimary">
+              </BtnPrimary>
+              <BtnPrimary onClick={handleDownload3}>
                 Svg
-              </button>
+              </BtnPrimary>
             </div>
           </div>
         </div>

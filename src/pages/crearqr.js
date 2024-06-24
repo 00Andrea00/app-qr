@@ -36,19 +36,19 @@ function Crearqr() {
   const handleDownload = async () => {
     if (qrRef.current) {
       const dataUrl = await toPng(qrRef.current);
-      download(dataUrl, 'qr-code.png');
+      download(dataUrl, `${qrName}.png`);
     }
   };
   const handleDownload2 = async () => {
     if (qrRef.current) {
       const dataUrl = await toJpeg(qrRef.current);
-      download(dataUrl, 'qr-code.jpeg');
+      download(dataUrl, `${qrName}.jpeg`);
     }
   };
   const handleDownload3 = async () => {
     if (qrRef.current) {
       const dataUrl = await toSvg(qrRef.current);
-      download(dataUrl, 'qr-code.svg');
+      download(dataUrl, `${qrName}.svg`);
     }
   };
 
