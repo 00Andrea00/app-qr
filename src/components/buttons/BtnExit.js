@@ -26,15 +26,15 @@ function BtnExit() {
             src="../../images/icons/icon-salir.png"
             alt="salir"
           />
-          <span>Salir</span>
+          <span>Cerrar sesión</span>
         </div>
       </button>
       {isOpen && (
         <div className="modal-overlay">
           <div class="modal animationFundido">
             <div className="modal-header">
-              <h2>Sesión cerrada correctamente</h2>
-              <BtnSecondary onClick={handleClose}>SALIR</BtnSecondary>
+              <h2>¿Estás seguro de querer salir de la aplicación?</h2>
+              <BtnSecondary onClick={handleClose}>CERRAR SESIÓN</BtnSecondary>
             </div>
           </div>
         </div>

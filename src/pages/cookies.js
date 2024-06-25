@@ -25,7 +25,6 @@ const Cookies = () => (
         <ul>
           <li>Mejorar la experiencia del usuario.</li>
           <li>Analizar el uso del sitio web.</li>
-          <li>Personalizar el contenido y los anuncios.</li>
           <li>Proporcionar funcionalidades de redes sociales.</li>
         </ul>
       </section>
@@ -38,7 +37,7 @@ const Cookies = () => (
       <section>
         <h2>Aceptación de Cookies</h2>
         <p>
-          Al continuar utilizando nuestro sitio web, aceptas el uso de cookies de acuerdo con nuestra política de cookies.
+          Al clickar en "aceptar" en el mensaje utilizado en nuestra página de inicio, permites el uso de cookies de acuerdo con nuestra política de cookies.
         </p>
       </section>
       <section>
