@@ -30,3 +30,14 @@
   font-size: var(--font-l);
   justify-content: center;
 }
+.profileName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+}
+.namePerfil {
+  margin-left: 10px;
+  font-size: var(--font-l);
+}

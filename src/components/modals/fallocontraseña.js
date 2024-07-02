@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import "./modal.css";
+import BtnClose from '../buttons/BtnClose';
+import BtnPrimary from '../buttons/BtnPrimary';
 
 Modal.setAppElement('#___gatsby'); // Esto es para accesibilidad
 
@@ -16,29 +19,25 @@ const FalloContraseña = () => {
 
   return (
     <div>
-      <a href="#" onClick={openModal}>Abrir Modal</a>
+      <a href="#" onClick={openModal}>Olvidaste la contraseña</a>
       <Modal
+        className="content"
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="Formulario Modal"
-        style={{
-          content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-          },
-        }}
+        contentLabel="Introduce el email para enviarte la contraseña"
       >
-        <h2>Formulario Modal</h2>
+        <div className="modalHeader">
+          <h2>Recuperación de contraseñas</h2>
+          <BtnClose onClick={closeModal} className="btnClose" />
+        </div>
         <form>
-          <div>
-            <label htmlFor="input1">Etiqueta 1:</label>
-            <input id="input1" type="text" />
+          <div className='textos'>
+            <label htmlFor="input1">Email al que enviar la contraseña:</label>
+            <input id="input1" type="text" className='inputpass' required placeholder='Introduce tu correo' />
           </div>
-          <button type="button" onClick={closeModal}>Cerrar</button>
+          <div className='btnpassenv'>
+          <BtnPrimary>Enviar</BtnPrimary>
+          </div>
         </form>
       </Modal>
     </div>

@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Andrea Cuenca <andreacuencardzo@gmail.com>",
   "dependencies": {
+    "axios": "^1.7.2",
     "downloadjs": "^1.4.7",
     "formik": "^2.4.6",
     "gatsby": "^5.13.5",
@@ -20,6 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
+    "react-modal": "^3.16.1",
     "react-share": "^5.1.0",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",

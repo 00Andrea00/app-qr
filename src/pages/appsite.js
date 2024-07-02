@@ -1,19 +1,34 @@
-import React, { useState, useRef, useEffect } from "react"
-import Seo from "../components/seo"
-import Halt from "../components/header/halt"
-import "../components/css-pages/appsite.css"
-import Footer from "../components/footer/Footer"
-import { StaticImage } from "gatsby-plugin-image"
-import { Link } from "gatsby"
-import BtnPrimary from "../components/buttons/BtnPrimary"
-import BtnSecondary from "../components/buttons/BtnSecondary"
+import React, { useState, useEffect } from "react";
+import Seo from "../components/seo";
+import Halt from "../components/header/halt";
+import "../components/css-pages/appsite.css";
+import Footer from "../components/footer/Footer";
+import { StaticImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
+import BtnPrimary from "../components/buttons/BtnPrimary";
+import BtnSecondary from "../components/buttons/BtnSecondary";
+import BtnProfile from "../components/buttons/BtnProfile";
 
 function AppSite() {
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    // Obtener el nombre del usuario desde localStorage
+    const storedUserName = localStorage.getItem('userName');
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []);
+
   return (
     <>
       <Halt></Halt>
-      <section class="appSiteSelection animationFundido">
-        <div class="ColumnSite1">
+      <div className="profileName">
+        <BtnProfile></BtnProfile>
+        <p className='namePerfil'>{userName}</p>
+      </div>
+      <section className="appSiteSelection animationFundido">
+        <div className="ColumnSite1">
           <StaticImage 
           src="../images/appsite/CrearQR.png"
           alt="Crear QR"
@@ -24,7 +39,7 @@ function AppSite() {
           <BtnPrimary className="btnLarge">Crear QR</BtnPrimary>
           </Link>
         </div>
-        <div class="ColumnSite2">
+        <div className="ColumnSite2">
         <StaticImage 
           src="../images/appsite/ListaQR.png"
           alt="Listar QR"
@@ -41,5 +56,5 @@ function AppSite() {
   )
 }
 
-export const Head = () => <Seo title="Inicio" />
-export default AppSite
+export const Head = () => <Seo title="App site" />;
+export default AppSite;

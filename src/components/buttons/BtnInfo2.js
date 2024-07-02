@@ -6,6 +6,7 @@ const BtnInfo2 = ({ isExpanded, toggleExpand }) => {
   return (
     <div className="btn-info2-container">
       <button 
+        type='button'
         onClick={toggleExpand} 
         className={`btnInfo2 ${isExpanded ? "expanded" : ""}`}
         aria-expanded={isExpanded}

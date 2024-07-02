@@ -1,0 +1,39 @@
+/* src/modalcs/modalregistro.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal form div {
+  margin-bottom: 10px;
+}
+
+.modal button {
+  background-color: var(--color-secondary);
+  color: var(--bg-color);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font: var(--font-text);
+  margin: 10px;
+}
+
+.modal button:last-of-type {
+  background-color: var(--color-primary);
+}
