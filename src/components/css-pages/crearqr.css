@@ -103,23 +103,11 @@ text-shadow: 1px 1px 1px  black;
   height: 70px;
   width: 280px;
 }
-.holaa{
-  border: none!important;
-  border-radius: none!important;
-  box-shadow: none!important;
-}
-textarea{
+
+.txtNameQr{
   display: block;
   margin-left: 17%;
   resize: none;
-} 
-input[type="file"].holaa {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
 }
 label[for="tipo"] {
   font-family: var(--font-text);
@@ -193,7 +181,7 @@ text-align: left;
     width: 380px;
     margin-right: 15%;
   }
-  .patata textarea{
+  .patata .txtNameQr{
     margin-left: 6%;
   }
   .personalizar{

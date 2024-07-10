@@ -5,19 +5,19 @@ import "./header.css"
 import BtnExit from "../buttons/BtnExit"
 
 const Halt = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleLogout = () => {
-    setIsModalOpen(true);
-  };
+    setIsModalOpen(true)
+  }
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
   return (
     <div className="halt2" id="myHeader">
-      <Link to="#">
+      <Link to="/appsite">
         <StaticImage // Usa StaticImage para mostrar la imagen
           src="../../images/icons/logogeneradorqr.png"
           alt="patrimonio"
@@ -44,7 +44,7 @@ const Halt = () => {
       </div>
       {/* <Modalcs isOpen={isModalOpen} onClose={handleCloseModal} /> */}
     </div>
-  );
-};
+  )
+}
 
-export default Halt;
+export default Halt

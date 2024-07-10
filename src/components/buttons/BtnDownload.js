@@ -4,7 +4,6 @@ import "../buttons/buttons.css";
 import BtnClose from "./BtnClose";
 import "../modals/modal.css";
 import "../buttons/buttons.css"
-import "../buttons/BtnPrimary"
 import BtnPrimary from "../buttons/BtnPrimary";
 
 function BtnDownload({ handleDownload, handleDownload2, handleDownload3 }) {

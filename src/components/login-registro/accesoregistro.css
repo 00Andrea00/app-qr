@@ -1,22 +1,24 @@
-.form-container-grandBlue{
+.grandBlue {
   width: 300px;
   border: 1px solid #ccc;
   padding: 20px;
   margin-top: 5%;
-  margin-left: 10%;
+  margin-left: 16%;
   border-radius: 10px;
-  border: groove black 4px;
+  border: groove var(--color-primary) 4px;
+  background-color: #ffffff80;
+  height: 594px;
 }
-
 .form-container {
   width: 600px;
   border: 1px solid #ccc;
   padding: 20px;
-  margin-left: 40%;
-  margin-top: -26.5%;
+  margin-left: 50%;
+  margin-top: -39%;
   margin-bottom: 2%;
   border-radius: 10px;
-  border: groove black 4px;
+  border: groove var(--color-primary) 4px;
+  background-color: var(--color-complementary-1);
 }
 
 .register-form .field-group {
@@ -29,34 +31,34 @@
   position: relative;
 }
 
-h1 {
+.h1Login {
   color: var(--text-color-1);
 }
 
-label {
+.labelLogin {
   color: var(--text-color-3);
   text-shadow: none;
   font-weight: bolder;
   font-size: large;
 }
 
-.email-input-container input{
+.email-input-container input {
   width: 250px;
   height: 30px;
 }
 
-.name-input-container input{
+.name-input-container input {
   width: 250px;
   height: 30px;
 }
 
 .password-input-container input {
-  width: 250px; /* Ajusta el ancho del input */
+  width: 250px;
   height: 30px;
-  padding-right: 50px; /* Añade espacio para el botón */
+  padding-right: 50px;
 }
 
-.confirmPassword-input-container input{
+.confirmPassword-input-container input {
   width: 250px;
   height: 30px;
 }
@@ -90,7 +92,7 @@ label {
 }
 
 .fixed-position {
-  position: relative; /* or absolute */
+  position: relative;
   right: -80%;
   top: -20%;
   transform: translateY(-50%);
@@ -103,30 +105,7 @@ label {
 }
 
 .error-message-brook {
-  margin-top: -32%;
-}
-
-#pimpam {
-  display: inline-flex;
-  cursor: pointer;
-  background-color: var(--btn-bg-2);
-  color: var(--text-color-2);
-  font-family: var(--font-text);
-  font-size: var(--font-s);
-  letter-spacing: var(--letter-space);
-  padding: var(--space-2);
-  margin: var(--space-2);
-  border: var(--color-secondary) var(--btn-border-solid-1);
-  border-radius: var(--btn-radius-1);
-  transition: 0.4s ease-in-out;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 4px #282828;
-  position: relative;
-}
-#pimpam:hover {
-  background-color: #5a0a00;
-  text-shadow: none;
-  border: #5a0a00 var(--btn-border-solid-1);
+  margin-top: -10%;
 }
 
 #trucutrucu {

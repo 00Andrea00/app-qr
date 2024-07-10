@@ -27,24 +27,6 @@ function BtnSave() {
         />
         <span>Guardar</span>
       </button>
-      {isOpen && (
-        <div className="modal-overlay">
-          <div className="modal animationFundido">
-            <div className="modal-header">
-              <h2>Guardar archivo</h2>
-              <BtnClose onClick={toggleModal}>
-              </BtnClose>
-            </div>
-            <div className="modal-body">
-              {saved ? (
-                <p>Archivo guardado correctamente!</p>
-              ) : (
-                <p>Su código Qr ha guardado correctamente en la base de datos.</p>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </React.Fragment>
   )
 }

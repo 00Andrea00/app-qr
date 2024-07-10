@@ -22,18 +22,3 @@
 .modal form div {
   margin-bottom: 10px;
 }
-
-.modal button {
-  background-color: var(--color-secondary);
-  color: var(--bg-color);
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  font: var(--font-text);
-  margin-right: 10px;
-}
-
-.modal button:last-of-type {
-  background-color: var(--color-primary);
-}

@@ -30,6 +30,7 @@
 }
 .modal-body {
   padding: 20px;
+  text-align: center;
 }
 /* /////////////////MODAL DESCARGA///////// */
 /* /////////////////////MODAL REDES/////////////////////////////// */
@@ -59,7 +60,7 @@
   z-index: 1;
 }
 
-.content  {
+.content {
   background-color: white;
   border-radius: 10px;
   padding: 10px;
@@ -69,42 +70,38 @@
   top: 30%;
   border: var(--btn-border-solid-1) var(--color-secondary);
   box-shadow: 3px 3px 3px 3px black;
-  }
-  .modalHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-  .modalHeader h2 {
-    margin: 0;
-  }
-  .modalHeader .btnClose {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  .textos{
-    padding: 10px;
-  }
-  .inputpass{
-    margin-left: 5px;
-    width: 265px;
-    height: 30px;
-  }
-  input::placeholder{
-    text-align: center;
-    font-weight: bold;
-  }
-  .btnpassenv{
-    margin-left: 6px;
-  }
-  label{
-    padding-bottom: 6px;
-  }
+}
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.modalHeader h2 {
+  margin: 0;
+}
+.textos {
+  padding: 10px;
+}
+.inputpass {
+  margin-left: 5px;
+  width: 265px;
+  height: 30px;
+}
+input::placeholder {
+  text-align: center;
+  font-weight: bold;
+}
+.btnpassenv {
+  margin-left: 6px;
+}
+label {
+  padding-bottom: 6px;
+}
 
 @media (max-width: 1024px) {
-  .modal-content{
+  .modal-content {
     height: 650px;
   }
 }
+

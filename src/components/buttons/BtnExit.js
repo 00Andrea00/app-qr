@@ -2,8 +2,9 @@ import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import "../buttons/buttons.css"
-import BtnSecondary from "./BtnSecondary"
 import "../modals/modal.css"
+import BtnSecondary from "../buttons/BtnSecondary"
+
 
 function BtnExit() {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,6 +12,10 @@ function BtnExit() {
   const handleClose = () => {
     setIsOpen(false)
     navigate("/")
+  }
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen)
   }
 
   const handleBtnClick = () => {
@@ -34,7 +39,8 @@ function BtnExit() {
           <div class="modal animationFundido">
             <div className="modal-header">
               <h2>¿Estás seguro de querer salir de la aplicación?</h2>
-              <BtnSecondary onClick={handleClose}>CERRAR SESIÓN</BtnSecondary>
+              <BtnSecondary onClick={toggleModal}>VOLVER</BtnSecondary>
+              <BtnSecondary onClick={handleClose}>SALIR</BtnSecondary>
             </div>
           </div>
         </div>

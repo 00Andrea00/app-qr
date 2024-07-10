@@ -38,12 +38,6 @@ const HeaderComponent = () => {
           </Link>
           &nbsp;&nbsp;&nbsp;|
         </div>
-        <div className="text-wrapper">
-          <a className="styledLink subrayar animationFundido" href="">
-            CONTACTO
-          </a>
-          &nbsp;&nbsp;&nbsp;|
-        </div>
         <BtnShare></BtnShare>
       </div>
     </div>

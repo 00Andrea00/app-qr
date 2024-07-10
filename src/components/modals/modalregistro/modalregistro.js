@@ -1,16 +1,16 @@
 // src/components/ContactModal.js
-import React from 'react';
-import "../modalregistro/modalregistro.css";
+import React from "react"
+import "./modalregistro.css"
 
 const ModalRegistro = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault()
     // Aquí puedes manejar el envío del formulario
-    alert('Formulario enviado');
-    onClose();
-  };
+    alert("Formulario enviado")
+    onClose()
+  }
 
   return (
     <div className="modal-overlay">
@@ -34,7 +34,7 @@ const ModalRegistro = ({ isOpen, onClose }) => {
         <button onClick={onClose}>Cerrar</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ModalRegistro;
+export default ModalRegistro
