@@ -24,3 +24,18 @@
   overflow: hidden;
   cursor: auto;
 }
+
+.juntitos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  vertical-align: middle;
+}
+.juntitos > * {
+  margin: 0 10px;
+  flex-shrink: 0;
+}
+.buscador {
+  flex-grow: 1; /* Add this to make the Buscador component take up the remaining space */
+}

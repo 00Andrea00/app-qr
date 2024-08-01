@@ -8,8 +8,7 @@ import { Link } from "gatsby"
 import BtnPrimary from "../components/buttons/BtnPrimary"
 import BtnSecondary from "../components/buttons/BtnSecondary"
 import BtnProfile from "../components/buttons/BtnProfile"
-import BtnRolUser from "../components/buttons/btnUserRol"
-import BtnUserEdit from "../components/buttons/BtnEditUser"
+import BtnInfoUser from "../components/buttons/BtnInfoUser"
 
 function AppSite() {
   const [userName, setUserName] = useState("")
@@ -24,8 +23,7 @@ function AppSite() {
   return (
     <>
       <Halt></Halt>
-      <BtnRolUser></BtnRolUser>
-      <BtnUserEdit></BtnUserEdit>
+      <BtnInfoUser></BtnInfoUser>
       <div className="profileName">
         <BtnProfile></BtnProfile>
         <Link to="/usuario">

@@ -34,7 +34,7 @@ label {
 .hr{
     display:none
 }
-.makuhita{
+.selector-color-qr{
   font-family: var(--font-text);
   text-shadow: 1px 1px 1px  black;
   margin-top: 15px;

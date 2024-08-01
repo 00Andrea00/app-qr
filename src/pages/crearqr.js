@@ -1,59 +1,55 @@
-import React, { useState, useRef, useEffect } from "react"
-import Seo from "../components/seo"
-import Halt from "../components/header/halt"
-import MyComponent from "../components/comp/comp"
-import QRCode from "qrcode.react"
-import { toPng, toJpeg, toSvg } from "html-to-image"
-import download from "downloadjs"
-import "../components/css-pages/crearqr.css"
-import Desplegable from "../components/desplegable/Desplegable"
-import Footer from "../components/footer/Footer"
-import BtnSave from "../components/buttons/BtnSave"
-import BtnDownload from "../components/buttons/BtnDownload"
-import BtnUp from "../components/buttons/BtnUp"
-import BtnInfo from "../components/buttons/BtnInfo"
-import MapComponent from "../components/mapa/mapa"
+import React, { useState, useRef } from "react";
+import Seo from "../components/seo";
+import Halt from "../components/header/halt";
+import MyComponent from "../components/comp/comp";
+import QRCode from "qrcode.react";
+import { toPng, toJpeg, toSvg } from "html-to-image";
+import download from "downloadjs";
+import "../components/css-pages/crearqr.css";
+import Desplegable from "../components/desplegable/Desplegable";
+import Footer from "../components/footer/Footer";
+import BtnSave from "../components/buttons/BtnSave";
+import BtnDownload from "../components/buttons/BtnDownload";
+import BtnUp from "../components/buttons/BtnUp";
+import BtnInfo from "../components/buttons/BtnInfo";
+import MapComponent from "../components/mapa/mapa";
+import BtnBack from "../components/buttons/BtnBack";
 
 function Crearqr() {
-  const [qrColor, setQrColor] = useState("black")
-  const [qrSize, setQrSize] = useState(100)
-  const [qrName, setQrName] = useState("")
-  const [selectedFile, setSelectedFile] = useState(null)
-  const qrRef = useRef(null)
-  const [selectedOption, setSelectedOption] = useState("")
-  const [inputValue, setInputValue] = useState("")
-  const [displayValue, setDisplayValue] = useState("")
+  const [qrColor, setQrColor] = useState("black");
+  const [qrSize, setQrSize] = useState(100);
+  const [qrName, setQrName] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const qrRef = useRef(null);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [displayValue, setDisplayValue] = useState("");
 
-  const handleColorChange = color => {
-    setQrColor(color)
-  }
+  const handleColorChange = (color) => {
+    setQrColor(color);
+  };
 
-  const handleSizeChange = size => {
-    setQrSize(parseInt(size, 10))
-  }
+  const handleSizeChange = (size) => {
+    setQrSize(parseInt(size, 10));
+  };
 
-  const handleFileChange = event => {
-    setSelectedFile(event.target.files[0])
-  }
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
-  const handleDownload = async () => {
+  const handleDownload = async (format) => {
     if (qrRef.current) {
-      const dataUrl = await toPng(qrRef.current)
-      download(dataUrl, `${qrName}.png`)
+      let dataUrl;
+      if (format === 'png') {
+        dataUrl = await toPng(qrRef.current);
+      } else if (format === 'jpeg') {
+        dataUrl = await toJpeg(qrRef.current);
+      } else if (format === 'svg') {
+        dataUrl = await toSvg(qrRef.current);
+      }
+      download(dataUrl, `${qrName}.${format}`);
     }
-  }
-  const handleDownload2 = async () => {
-    if (qrRef.current) {
-      const dataUrl = await toJpeg(qrRef.current)
-      download(dataUrl, `${qrName}.jpeg`)
-    }
-  }
-  const handleDownload3 = async () => {
-    if (qrRef.current) {
-      const dataUrl = await toSvg(qrRef.current)
-      download(dataUrl, `${qrName}.svg`)
-    }
-  }
+  };
 
   const colorOptions = [
     "black",
@@ -65,62 +61,55 @@ function Crearqr() {
     "orange",
     "pink",
     "magenta",
-  ]
+  ];
 
   const options = [
     { value: "default", label: "Selecciona el contenido", disabled: true },
     { value: "url", label: "URL", disabled: false },
     { value: "geolocation", label: "Geolocalización", disabled: false },
-    // { value: "image", label: "Imagen", disabled: false },
     { value: "text", label: "Texto Explicativo", disabled: false },
-  ]
+  ];
 
-  const handleInputChange = event => {
-    setInputValue(event.target.value)
-  }
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
-  const opcion = event => {
-    setSelectedOption(event.target.value)
-    setInputValue("")
-    console.log("Selected:", event.target.value)
-  }
+  const opcion = (event) => {
+    setSelectedOption(event.target.value);
+    setInputValue("");
+    console.log("Selected:", event.target.value);
+  };
 
-  const handleLocationSelect = latlng => {
-    const mapsUrl = `https://www.google.com/maps?q=${latlng.lat},${latlng.lng}`
-    setInputValue(mapsUrl)
-    setDisplayValue(`${latlng.lat}, ${latlng.lng}`)
-  }
+  const handleLocationSelect = (latlng) => {
+    const mapsUrl = `https://www.google.com/maps?q=${latlng.lat},${latlng.lng}`;
+    setInputValue(mapsUrl);
+    setDisplayValue(`${latlng.lat}, ${latlng.lng}`);
+  };
 
-  let inputType = "textarea"
-  let inputPlaceholder = "Introduce tu texto o url aquí:"
-  let inputPattern = ""
+  let inputType = "textarea";
+  let inputPlaceholder = "Introduce tu texto o url aquí:";
+  let inputPattern = "";
 
   switch (selectedOption) {
     case "url":
-      inputType = "url"
-      inputPlaceholder = "Introduce la URL aquí:"
-      inputPattern = "https?://.*"
-      break
+      inputType = "url";
+      inputPlaceholder = "Introduce la URL aquí:";
+      inputPattern = "https?://.*";
+      break;
     case "geolocation":
-      inputType = "hidden"
-      inputPlaceholder = "Selecciona un punto en el mapa:"
-      inputPattern = "^(-?\\d+(\\.\\d+)?),\\s*(-?\\d+(\\.\\d+)?)$"
-      break
-    // Posible función para poner imagen en el QR
-    // case "image":
-    //   inputType = "file"
-    //   inputPlaceholder = "Selecciona una imagen:"
-    //   inputPattern = ""
-    //   break
+      inputType = "hidden";
+      inputPlaceholder = "Selecciona un punto en el mapa:";
+      inputPattern = "^(-?\\d+(\\.\\d+)?),\\s*(-?\\d+(\\.\\d+)?)$";
+      break;
     case "text":
-      inputType = "text"
-      inputPlaceholder = "Introduce el texto aquí:"
-      inputPattern = ""
-      break
+      inputType = "text";
+      inputPlaceholder = "Introduce el texto aquí:";
+      inputPattern = "";
+      break;
     default:
-      inputType = "text"
-      inputPlaceholder = "Introduce tu texto o url aquí:"
-      inputPattern = ""
+      inputType = "text";
+      inputPlaceholder = "Introduce tu texto o url aquí:";
+      inputPattern = "";
   }
 
   return (
@@ -140,7 +129,7 @@ function Crearqr() {
                 type="text"
                 id="nombreQR"
                 placeholder="Introduce el nombre del QR"
-                onChange={e => setQrName(e.target.value)}
+                onChange={(e) => setQrName(e.target.value)}
               />
               <label>Elija el tipo de Contenido:</label>
               <Desplegable options={options} onChange={opcion} />
@@ -150,16 +139,6 @@ function Crearqr() {
                   <MapComponent onLocationSelect={handleLocationSelect} />
                 </div>
               ) : (
-                // Posible función para añadir imágenes.
-                // : inputType === "file" ? (
-                //   <input
-                //     id="tipo"
-                //     type={inputType}
-                //     onChange={handleFileChange}
-                //     accept="image/*"
-                //     className="holaa"
-                //   />
-                // )
                 <textarea
                   id="tipo"
                   type={inputType}
@@ -202,12 +181,16 @@ function Crearqr() {
                 </p>
                 <br />
               </div>
-              <BtnSave />
+              <BtnSave 
+                qrName={qrName}
+                qrColor={qrColor}
+                qrSize={qrSize}
+                qrValue={inputValue}
+                createdBy={1} 
+              />
               <br />
               <BtnDownload
-                handleDownload={handleDownload}
-                handleDownload2={handleDownload2}
-                handleDownload3={handleDownload3}
+                handleDownload={(format) => handleDownload(format)}
               />
             </div>
           </div>
@@ -216,10 +199,11 @@ function Crearqr() {
         <br />
       </div>
       <BtnUp />
+      <BtnBack />
       <Footer />
     </>
-  )
+  );
 }
 
-export const Head = () => <Seo title="Crear Qr" />
-export default Crearqr
+export const Head = () => <Seo title="Crear Qr" />;
+export default Crearqr;

@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-import Seo from "../components/seo"
 import "./usuario.css"
 import { StaticImage } from "gatsby-plugin-image"
 import BtnTertiary from "../components/buttons/BtnTertiary"

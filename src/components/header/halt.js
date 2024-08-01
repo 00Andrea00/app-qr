@@ -26,7 +26,7 @@ const Halt = () => {
           className="imagen"
         />
       </Link>
-      <div className="snorlax">
+      <div className="menu-cabecera-halt">
         <BtnExit></BtnExit>
         {/* <div className="text-wrapper">|&nbsp;&nbsp;&nbsp;
           <Link to="/">

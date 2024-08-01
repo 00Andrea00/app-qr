@@ -7,6 +7,7 @@ import Footer from "../components/footer/Footer"
 import { StaticImage } from "gatsby-plugin-image"
 import BtnTertiary from "../components/buttons/BtnTertiary"
 import BtnPrimary from "../components/buttons/BtnPrimary"
+import BtnBack from "../components/buttons/BtnBack"
 
 function Usuario() {
   return (
@@ -61,6 +62,7 @@ function Usuario() {
           </Link>
         </div>
       </div>
+      <BtnBack></BtnBack>
       <Footer></Footer>
     </>
   )

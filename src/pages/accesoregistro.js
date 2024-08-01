@@ -5,6 +5,8 @@ import Footer from "../components/footer/Footer"
 import "../components/login-registro/accesoregistro.css"
 import LoginForm from "../components/login-registro/login"
 import RegisterForm from "../components/login-registro/registro"
+import BtnUp from "../components/buttons/BtnUp"
+import BtnBack from "../components/buttons/BtnBack"
 
 // Simulación de una llamada a API para el inicio de sesión
 const login = async (email, password) => {
@@ -32,6 +34,8 @@ const Auth = () => {
         <LoginForm login={login} />
         <RegisterForm register={register} />
       </div>
+      <BtnUp></BtnUp>
+      <BtnBack></BtnBack>
       <Footer />
     </>
   )

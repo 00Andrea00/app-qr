@@ -154,8 +154,8 @@
 .btnClose2 {
   cursor: pointer;
   background-color: transparent;
-  top: -10px;
-  right: -580px;
+  top: -30px;
+  left: -150px;
   font-size: 28px;
   letter-spacing: var(--letter-space);
   border: transparent var(--btn-border-solid-1);
@@ -205,13 +205,13 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: var(--btn-bg-2);
+  background-color: var(--color-tertiary);
   color: var(--text-color-1);
   font-family: var(--font-text);
   font-size: var(--font-m);
   padding: var(--space-1);
   margin: var(--space-2);
-  border: var(--color-secondary) var(--btn-border-solid-1);
+  border: var(--color-primary) var(--btn-border-solid-1);
   border-radius: var(--btn-radius-1);
   transition: 0.2s ease-in-out;
   text-transform: uppercase;
@@ -227,6 +227,77 @@
   text-shadow: none;
 }
 /* btnBack (botón para salir de la app) */
+/* btnMasInfo (botón para más info del perfil) */
+.btnInfo {
+  cursor: pointer;
+  background-color: transparent;
+  font-size: var(--font-s);
+  margin: var(--space-2);
+  border: transparent var(--btn-border-solid-1);
+  text-shadow: 0.5px 1px 4px #474747;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.1s ease;
+}
+.icon-info {
+  width: 40px;
+  height: auto;
+  margin: 0 auto;
+}
+.icon-info:hover {
+  filter: drop-shadow(0.5px 0.5px 4px var(--color-secondary));
+  transform: scale(1.2);
+  transition: 0.1s ease;
+}
+.instruccion-modal-uso-qr {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.btnInfo2 {
+  cursor: pointer;
+  background-color: transparent;
+  font-size: var(--font-s);
+  margin: var(--space-2);
+  border: transparent var(--btn-border-solid-1);
+  text-shadow: 0.5px 1px 4px #474747;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.1s ease;
+}
+.collapse-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+.collapse-content.open {
+  max-height: 100vh;
+}
+.btnMasInfo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-secondary);
+  color: var(--bg-color);
+  border: none;
+  padding: 3px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: var(--font-s);
+  transition: background-color 0.3s ease;
+}
+
+.btnMasInfo .pMasInfo {
+  margin: 0;
+  font-weight: bold;
+  color: var(--bg-color);
+}
+
+.btnMasInfo:hover {
+  background-color: var(--color-complementary-1);
+}
+/* btnMasInfo (botón para más info del perfil) */
 /* btnInfo (botón para guardar contenido) */
 .btnInfo {
   cursor: pointer;
@@ -250,7 +321,7 @@
   transform: scale(1.2);
   transition: 0.1s ease;
 }
-.hamtaro {
+.instruccion-modal-uso-qr {
   font-weight: bold;
   text-decoration: underline;
 }
@@ -275,7 +346,34 @@
   max-height: 100vh;
 }
 /* btnInfo (botón para guardar contenido) */
+/* btnNuevoQr (botón redirige a crear QR) */
 /* btnSave (botón para guardar contenido) */
+.btnNuevoQr {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  color: var(--color-primary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btnNuevoQr:hover {
+  background-color: var(--color-complementary-1);
+}
+
+.imgnuevoqr {
+  width: 40px;
+  height: 50px;
+  margin-right: 8px;
+}
+.pnuevoqr {
+  font-family: var(--font-text);
+}
 .btnSave {
   display: inline-flex;
   align-items: center;
@@ -660,7 +758,7 @@
   align-items: center;
 }
 .icon-role {
-  width: 60px;
+  width: 40px;
   margin: 0 auto;
 }
 .tooltip-container-configRol {
@@ -677,7 +775,7 @@
   padding: 5px 10px;
   position: absolute;
   z-index: 1;
-  bottom: 90%; /* Posiciona el tooltip arriba del botón */
+  bottom: 90%;
   left: 50%;
   margin-left: -60px;
   opacity: 0;
@@ -698,13 +796,45 @@
   opacity: 1;
 }
 /* BtnUserRol (Botón para editar el Rol de un usuario */
-/* BtnEditUser (Botón para editar el Rol de un usuario */
-
-/* BtnEditUser (Botón para editar el Rol de un usuario */
+/* BtnUserEdit (Botón para editar el Rol de un usuario */
+.btnUserEdit {
+  cursor: pointer;
+  background-color: transparent;
+  font-size: var(--font-m);
+  margin: var(--space-2);
+  border: transparent var(--btn-border-solid-1);
+  transition: 0.1s ease;
+  text-shadow: 0.5px 1px 4px #474747;
+  display: inline-flex;
+  color: var(--color-primary);
+}
+.btnUserEdit span {
+  display: none;
+}
+/* BtnUserEdit (Botón para editar el Rol de un usuario */
 /* BtnDeleteUser (Botón para editar el Rol de un usuario */
+.btnUserDelete {
+  cursor: pointer;
+  background-color: transparent;
+  font-size: var(--font-m);
+  margin: var(--space-2);
+  border: transparent var(--btn-border-solid-1);
+  transition: 0.1s ease;
+  text-shadow: 0.5px 1px 4px #474747;
+  display: inline-flex;
+  color: var(--color-primary);
+}
+.btnUserDelete span {
+  display: none;
+}
 /* BtnDeleteUser (Botón para editar el Rol de un usuario */
+/* BtnNuevoQr (Botón para llevar a Crear qr */
 
+/* BtnNuevoQr (Botón para llevar a Crear qr */
 
+.fixedbtninfo {
+  position: absolute;
+}
 
 /* MEDIA QUERYS BOTONES ================================================================== */
 /* ======================================================================================= */
@@ -718,6 +848,24 @@
     border-radius: var(--btn-radius-1);
   }
   .btnRolUser span {
+    display: inline;
+  }
+  .btnUserEdit {
+    background-color: var(--color-tertiary);
+    padding: 4px;
+    border: var(--btn-border-doble-2) var(--color-primary);
+    border-radius: var(--btn-radius-1);
+  }
+  .btnUserEdit span {
+    display: inline;
+  }
+  .btnUserDelete {
+    background-color: var(--color-tertiary);
+    padding: 4px;
+    border: var(--btn-border-doble-2) var(--color-primary);
+    border-radius: var(--btn-radius-1);
+  }
+  .btnUserDelete span {
     display: inline;
   }
   .icon-role {

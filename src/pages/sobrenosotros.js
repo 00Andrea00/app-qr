@@ -6,6 +6,7 @@ import "../components/css-pages/sobrenosotros.css"
 import Halt2 from "../components/header/halt2"
 import Footer from "../components/footer/Footer"
 import BtnUp from "../components/buttons/BtnUp"
+import BtnBack from "../components/buttons/BtnBack"
 
 const Sobrenosotros = () => (
   <>
@@ -256,6 +257,7 @@ const Sobrenosotros = () => (
       </p>
     </div>
     <BtnUp></BtnUp>
+    <BtnBack></BtnBack>
     <Footer></Footer>
   </>
 )

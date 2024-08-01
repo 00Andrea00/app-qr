@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react"
-import { StaticImage } from "gatsby-plugin-image"
+import React, { useState, useEffect, useRef } from "react"
+import QRCode from "qrcode.react"
 import "./listqr.css"
-import Buscador from "../buscador/buscador"
+import Buscador2 from "../buscador/buscador2"
+import BtnDownload from "../buttons/BtnDownload"
+import { toPng, toJpeg, toSvg } from "html-to-image"
+import download from "downloadjs"
+import BtnMasInfoLista from "../buttons/BtnMasInfoLista"
 
 const ListQr = ({ url }) => {
   const [qrs, setQrs] = useState([])
-  const [menssage, setMenssage] = useState("")
+  const [filteredQrs, setFilteredQrs] = useState([])
+  const [message, setMessage] = useState("")
+  const qrRefs = useRef({})
+
   useEffect(() => {
     const fetchQrs = async () => {
       try {
@@ -20,32 +27,65 @@ const ListQr = ({ url }) => {
         }
         const data = await response.json()
         setQrs(data.qrs)
-        setMenssage(data.menssage)
+        setFilteredQrs(data.qrs) // Initialize filteredQrs with all qrs
+        setMessage(data.message)
       } catch (error) {
         console.error("Error al buscar la lista de usuarios", error)
       }
     }
     fetchQrs()
   }, [url])
+
+  const handleDownload = async (format, qr) => {
+    const qrElement = qrRefs.current[qr.qr_id]
+    if (qrElement) {
+      let dataUrl
+      switch (format) {
+        case "png":
+          dataUrl = await toPng(qrElement)
+          break
+        case "jpeg":
+          dataUrl = await toJpeg(qrElement)
+          break
+        case "svg":
+          dataUrl = await toSvg(qrElement)
+          break
+        default:
+          return
+      }
+      download(dataUrl, `${qr.qr_name_qr}.${format}`)
+    }
+  }
+
+  const handleSearch = query => {
+    if (query === "") {
+      setFilteredQrs(qrs)
+    } else {
+      const filtered = qrs.filter(qr =>
+        qr.qr_name_qr.toLowerCase().includes(query.toLowerCase())
+      )
+      setFilteredQrs(filtered)
+    }
+  }
+
   return (
     <>
-      <h1 className="h1Qr">{menssage}</h1>
-      <Buscador></Buscador>
+      <h1 className="h1Qr">{message}</h1>
+      <Buscador2 onSearch={handleSearch} />
       <div className="listado-qr">
-        {qrs.map(qrs => (
-          <div key={qrs.id}>
-            <div className="tarjeta-qr">
-              <StaticImage
-                className="btnProfile icon-perfil img-personal"
-                src="../../images/icons/profile-2.svg"
-                alt="Perfil"
+        {filteredQrs.map(qr => (
+          <div key={qr.qr_id} className="tarjeta-qr">
+            <div ref={el => (qrRefs.current[qr.qr_id] = el)}>
+              <QRCode
+                value={qr.qr_description}
+                fgColor={qr.qr_color_qr}
+                className="qrimg"
               />
-              <button>+ info</button>
-              <p>{qrs.name_qr}</p>
-              <button>Modificar</button>
-              <button>Descargar</button>
-              <button>Eliminar</button>
             </div>
+            <BtnMasInfoLista></BtnMasInfoLista>
+            <p>{qr.qr_name_qr}</p>
+            <BtnDownload qr={qr} handleDownload={handleDownload} />
+            <button>Eliminar</button>
           </div>
         ))}
       </div>

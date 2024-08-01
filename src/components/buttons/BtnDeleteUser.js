@@ -1,32 +1,30 @@
-// btnUserRol.js
 import React, { useState } from "react"
 import { StaticImage } from "gatsby-plugin-image"
 import "../buttons/buttons.css"
-import "../modals/modal.css"
 import BtnClose from "./BtnClose"
-import SelectRol from "../selects/select-rol"
 import BtnSecondary from "./BtnSecondary"
-import useAutoCloseModal from "../funcionalidades/useAutoCloseModal"
 
-function BtnRolUser({ mailto, updateUserRole }) {
-  //updateUserRole hará que el cambio se refleje en la pág.
-  const { isOpen, toggleModal, setAutoClose } = useAutoCloseModal()
+function BtnUserDelete({ mailto, deleteUser }) {
+  const [isOpen, setIsOpen] = useState(false)
   const [mail] = useState(mailto)
-  const [selectedRole, setSelectedRole] = useState("")
   const [message, setMessage] = useState("")
 
-  const handleRoleUser = async () => {
+  const toggleModal = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const handleDeleteUser = async () => {
     try {
-      console.log("Iniciando petición para cambiar rol", mail)
+      console.log("Iniciando petición para eliminar usuario", mail)
 
       const response = await fetch(
-        "http://localhost/bd-appqr/v1/user/change-role.php",
+        "http://localhost/bd-appqr/v1/user/delete-user.php",
         {
-          method: "PUT",
+          method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email: mail, role: selectedRole }),
+          body: JSON.stringify({ email: mail }),
         }
       )
 
@@ -36,8 +34,7 @@ function BtnRolUser({ mailto, updateUserRole }) {
         const data = await response.json()
         console.log("Datos recibidos:", data)
         setMessage(data.message)
-        updateUserRole(mail, selectedRole) // Actualizo el rol del usuario
-        setAutoClose(true) // Activo el auto cierre después de recibir la respuesta exitosa
+        deleteUser(mail) // Elimino el usuario de la lista en la página
       } else {
         const errorData = await response.json()
         console.error("Error en la respuesta del servidor:", errorData)
@@ -45,43 +42,41 @@ function BtnRolUser({ mailto, updateUserRole }) {
       }
     } catch (error) {
       console.error("Error en la petición:", error)
-      setMessage(`Error al cambiar el rol: ${error.message}`)
+      setMessage(`Error al eliminar el usuario: ${error.message}`)
     }
-  }
-
-  const handleSelectRole = role => {
-    setSelectedRole(role)
   }
 
   return (
     <React.Fragment>
       <div className="tooltip-container-configRol">
-        <button className={`btnRolUser animationFundido`} onClick={toggleModal}>
+        <button
+          className={`btnUserDelete animationFundido`}
+          onClick={toggleModal}
+        >
           <div className="icon-role-container">
             <StaticImage
               className="icon-role"
-              src="../../images/icons/config-rol.png"
+              src="../../images/icons/borrar-usuario.png"
               alt="Icon-Role"
             />
-            <span>Editar Rol</span>
+            <span>Eliminar Usuario</span>
           </div>
         </button>
-        <div className="tooltip-configRol">Editar Rol del Usuario</div>
+        <div className="tooltip-configRol">Eliminar Usuario</div>
       </div>
       {isOpen && (
         <div className="modal-overlay">
           <div className="modal">
             <div className="modal-header">
-              <h2>Cambiar Rol de usuario</h2>
+              <h2>Eliminar Usuario</h2>
               <BtnClose onClick={toggleModal} />
             </div>
             <div className="modal-body">
               <p>
-                Seleccione el Rol del usuario con email: <b>{mail}</b>. Se
-                guardará automáticamente:
+                Si presiona el botón, eliminará al usuario con email:{" "}
+                <b>{mail}</b>.
               </p>
-              <SelectRol onSelect={handleSelectRole} />
-              <BtnSecondary onClick={handleRoleUser}>&#10004;</BtnSecondary>
+              <BtnSecondary onClick={handleDeleteUser}>Eliminar</BtnSecondary>
               {message && <p>{message}</p>}
             </div>
           </div>
@@ -91,4 +86,4 @@ function BtnRolUser({ mailto, updateUserRole }) {
   )
 }
 
-export default BtnRolUser
+export default BtnUserDelete

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './buscador.css';
 
-const Buscador = ({ onSearch, onSelect }) => {
+const Buscador2 = ({ onSearch }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
@@ -12,9 +12,9 @@ const Buscador = ({ onSearch, onSelect }) => {
     }
     const fetchResults = async () => {
       try {
-        const response = await fetch(`http://localhost/bd-appqr/v1/user/buscador.php?query=${encodeURIComponent(query)}`);
+        const response = await fetch(`http://localhost/bd-appqr/v1/qr/buscador.php?query=${encodeURIComponent(query)}`);
         const result = await response.json();
-        setResults(result.users);
+        setResults(result.qrs);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -28,10 +28,6 @@ const Buscador = ({ onSearch, onSelect }) => {
     onSearch(newQuery);
   };
 
-  const handleSelect = (id) => {
-    onSelect(id);
-  };
-
   return (
     <div className="buscador-container">
       <input
@@ -42,13 +38,13 @@ const Buscador = ({ onSearch, onSelect }) => {
         className="buscador-input"
       />
       {query && results.length === 0 ? (
-        <p className="buscador-no-results">El usuario o rol no encontrado</p>
+        <p className="buscador-no-results">QR no encontrado</p>
       ) : (
         results.length > 0 && (
           <ul className="buscador-results">
-            {results.map((item) => (
-              <li key={item.id} className="buscador-item" onClick={() => handleSelect(item.id)}>
-                {`${item.name} - ${item.role}`}
+            {results.map((qr) => (
+              <li key={qr.qr_id} className="buscador-item" onClick={() => onSearch(qr.qr_name_qr)}>
+                {qr.qr_name_qr}
               </li>
             ))}
           </ul>
@@ -58,4 +54,4 @@ const Buscador = ({ onSearch, onSelect }) => {
   );
 };
 
-export default Buscador;
+export default Buscador2;

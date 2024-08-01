@@ -55,7 +55,6 @@ border-radius: var(--btn-radius-1);
 padding: 10px;
 width: 110%;
 height:110%;
-box-shadow: black 6px 6px 12px 3px;
 background-color: var(--bg-color);
 }
 h2{

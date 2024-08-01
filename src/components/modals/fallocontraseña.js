@@ -1,22 +1,31 @@
-import React, { useState } from "react"
-import Modal from "react-modal"
-import "./modal.css"
-import BtnClose from "../buttons/BtnClose"
-import BtnPrimary from "../buttons/BtnPrimary"
+import React, { useState } from "react";
+import Modal from "react-modal";
+import "./modal.css";
+import BtnClose from "../buttons/BtnClose";
+import BtnPrimary from "../buttons/BtnPrimary";
+
+// Asegúrate de enlazar el modal con el elemento raíz de tu aplicación
+Modal.setAppElement('#___gatsby'); // Cambia este selector según el id del elemento raíz de tu aplicación
+
 const FalloContraseña = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [email, setEmail] = useState("")
-  const [message, setMessage] = useState("")
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
   const openModal = () => {
-    setModalIsOpen(true)
-  }
+    setModalIsOpen(true);
+  };
+
   const closeModal = () => {
-    setModalIsOpen(false)
-  }
-  const handleEmailChange = event => {
-    setEmail(event.target.value)
-  }
-  const handleSubmit = async () => {
+    setModalIsOpen(false);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       const response = await fetch(
         "http://localhost/bd-appqr/v1/user/email.php",
@@ -27,14 +36,15 @@ const FalloContraseña = () => {
           },
           body: JSON.stringify({ email }),
         }
-      )
-      const data = await response.json()
-      setMessage(data.message)
+      );
+      const data = await response.json();
+      setMessage(data.message);
     } catch (error) {
-      console.error("Error al enviar correo", error)
-      setMessage("Error al enviar correo")
+      console.error("Error al enviar correo", error);
+      setMessage("Error al enviar correo");
     }
-  }
+  };
+
   return (
     <div>
       <a href="#" onClick={openModal}>
@@ -44,6 +54,8 @@ const FalloContraseña = () => {
         className="content"
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
+        shouldCloseOnOverlayClick={true}
+        shouldCloseOnEsc={true}
         contentLabel="Introduce el email para enviarte la contraseña"
       >
         <div className="modalHeader">
@@ -70,6 +82,7 @@ const FalloContraseña = () => {
         {message && <p>{message}</p>}
       </Modal>
     </div>
-  )
-}
-export default FalloContraseña
+  );
+};
+
+export default FalloContraseña;

@@ -15,7 +15,7 @@ function MyComponent({ onColorChange, onSizeChange }) {
   };
   return (
     <>
-    <span for="pregunta" className='makuhita'>Selecciona el color del QR</span>
+    <span for="pregunta" className='selector-color-qr'>Selecciona el color del QR</span>
     <div className='color-select'>
       <input
     type="radio"

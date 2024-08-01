@@ -1,24 +1,25 @@
-import React, { useState } from "react"
-import "../selects/selects.css"
+import React, { useState } from "react";
+import "../selects/selects.css";
 
-const SelectRol = () => {
-  const [isActive, setIsActive] = useState(false)
-  const [selectedOption, setSelectedOption] = useState("Seleccionar")
+const SelectRol = ({ onSelect }) => {
+  const [isActive, setIsActive] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Seleccionar");
 
   const options = [
     { value: "guest", label: "Invitado" },
     { value: "employee", label: "Empleado" },
     { value: "admin", label: "Administrador" },
-  ]
+  ];
 
   const handleToggle = () => {
-    setIsActive(!isActive)
-  }
+    setIsActive(!isActive);
+  };
 
-  const handleSelect = option => {
-    setSelectedOption(option.label)
-    setIsActive(false)
-  }
+  const handleSelect = (option) => {
+    setSelectedOption(option.label);
+    setIsActive(false);
+    onSelect(option.value); // Llama a la función de selección con el valor deseado
+  };
 
   return (
     <div
@@ -39,24 +40,8 @@ const SelectRol = () => {
           </span>
         ))}
       </div>
-      <select
-        name="select-profession"
-        id="select-profession"
-        value={selectedOption}
-        onChange={() => {}}
-        style={{ display: "none" }}
-      >
-        <option value="default" disabled>
-          Seleccionar
-        </option>
-        {options.map((option, index) => (
-          <option key={index} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
     </div>
-  )
-}
+  );
+};
 
-export default SelectRol
+export default SelectRol;
