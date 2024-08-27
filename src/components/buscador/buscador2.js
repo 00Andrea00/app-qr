@@ -11,8 +11,9 @@ const Buscador2 = ({ onSearch }) => {
       return;
     }
     const fetchResults = async () => {
+      if (typeof window !== 'undefined') {
       try {
-        const response = await fetch(`http://localhost/bd-appqr/v1/qr/buscador.php?query=${encodeURIComponent(query)}`);
+        const response = await fetch(`https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/qr/buscador.php?query=${encodeURIComponent(query)}`);
         const result = await response.json();
         setResults(result.qrs);
       } catch (error) {
@@ -20,7 +21,7 @@ const Buscador2 = ({ onSearch }) => {
       }
     };
     fetchResults();
-  }, [query]);
+  }}, [query]);
 
   const handleSearch = (event) => {
     const newQuery = event.target.value;

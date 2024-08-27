@@ -9,9 +9,10 @@ const LoginForm = ({ login }) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleLogin = async (values, { setSubmitting }) => {
+    if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "http://localhost/bd-appqr/v1/user/login.php",
+        "https://andreatandem.tandempatrimonionacional.eu/bd-appqr/v1/user/login.php",
         {
           method: "POST",
           headers: {
@@ -37,7 +38,7 @@ const LoginForm = ({ login }) => {
     } finally {
       setSubmitting(false)
     }
-  }
+    }}
 
   const toggleShowPassword = () => {
     setShowPassword(prevShowPassword => !prevShowPassword)

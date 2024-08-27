@@ -31,9 +31,10 @@ const ModalRegistro = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "http://localhost/bd-appqr/v1/user/soporte.php",
+        "https://andreatandem.tandempatrimonionacional.eu/bd-appqr/v1/user/soporte.php",
         {
           method: "POST",
           headers: {
@@ -48,7 +49,7 @@ const ModalRegistro = () => {
       console.error("Error al enviar correo", error);
       setResponseMessage("Error al enviar correo");
     }
-  };
+  }};
 
   return (
     <div>

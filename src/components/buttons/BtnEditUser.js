@@ -14,9 +14,10 @@ function BtnUserEdit({ mailto, updateUserName }) {
   const [responseMessage, setResponseMessage] = useState("")
 
   const handleChangeName = async () => {
+    if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "http://localhost/bd-appqr/v1/user/change-name.php",
+        "https://andreatandem/bdappqr/v1/user/change-name.php",
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -33,7 +34,7 @@ function BtnUserEdit({ mailto, updateUserName }) {
       console.error("Error al cambiar el nombre:", error)
       setResponseMessage("Error al cambiar el nombre")
     }
-  }
+    }}
 
   const handleChangePassword = async () => {
     try {

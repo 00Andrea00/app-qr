@@ -14,11 +14,12 @@ function BtnUserDelete({ mailto, deleteUser }) {
   }
 
   const handleDeleteUser = async () => {
+    if (typeof window !== 'undefined') {
     try {
       console.log("Iniciando petición para eliminar usuario", mail)
 
       const response = await fetch(
-        "http://localhost/bd-appqr/v1/user/delete-user.php",
+        "https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/delete-user.php",
         {
           method: "DELETE",
           headers: {
@@ -44,7 +45,7 @@ function BtnUserDelete({ mailto, deleteUser }) {
       console.error("Error en la petición:", error)
       setMessage(`Error al eliminar el usuario: ${error.message}`)
     }
-  }
+    }}
 
   return (
     <React.Fragment>

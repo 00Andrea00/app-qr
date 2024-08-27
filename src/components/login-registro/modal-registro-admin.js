@@ -16,9 +16,10 @@ const ModalForm = () => {
       setMessage("Las contraseñas no coinciden")
       return
     }
+    if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "http://localhost/bd-appqr/v1/user/register.php",
+        "https://andreatandem.tandempatrimonionacional.eu/bd-appqr/v1/user/register.php",
         {
           method: "POST",
           headers: {
@@ -33,7 +34,7 @@ const ModalForm = () => {
       console.error("Error registrando usuario", error)
       setMessage("Error en el registro")
     }
-  }
+    }}
   const [stylesValidation, setStylesValidation] = useState({
     length: "",
     number: "",

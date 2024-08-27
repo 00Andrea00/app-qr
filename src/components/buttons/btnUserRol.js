@@ -16,11 +16,12 @@ function BtnRolUser({ mailto, updateUserRole }) {
   const [message, setMessage] = useState("")
 
   const handleRoleUser = async () => {
+    if (typeof window !== 'undefined') {
     try {
       console.log("Iniciando petición para cambiar rol", mail)
 
       const response = await fetch(
-        "http://localhost/bd-appqr/v1/user/change-role.php",
+        "https://andreatandem.tandempatrimonionacional.eu/bd-appqr/v1/user/change-role.php",
         {
           method: "PUT",
           headers: {
@@ -47,7 +48,7 @@ function BtnRolUser({ mailto, updateUserRole }) {
       console.error("Error en la petición:", error)
       setMessage(`Error al cambiar el rol: ${error.message}`)
     }
-  }
+  }}
 
   const handleSelectRole = role => {
     setSelectedRole(role)

@@ -15,9 +15,10 @@ const RegisterForm = ({ register }) => {
   const handlePassword = (e) => setPassword(e.target.value);
 
   const handleRegistro = async () => {
+    if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "http://localhost/bd-appqr/v1/user/register.php",
+        "https://andreatandem.tandempatrimonionacional.eu/bd-appqr/v1/user/register.php",
         {
           method: "POST",
           headers: {
@@ -32,7 +33,7 @@ const RegisterForm = ({ register }) => {
       console.error("Error registrando usuario", error);
       setMessage("Error en el registro");
     }
-  };
+  }};
 
   const [styles, setStyles] = useState({
     length: "",

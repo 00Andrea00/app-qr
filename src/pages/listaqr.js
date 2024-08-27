@@ -9,7 +9,7 @@ function ListaQr() {
   return (
     <>
       <Halt></Halt>
-      <ListQr url="http://localhost/bd-appqr/v1/qr/list-qr-admin.php"></ListQr>
+      <ListQr url="https://andreatandem.tandempatrimonionacional.eu/bd-appqr/v1/qr/list-qr-admin.php"></ListQr>
       <BtnBack></BtnBack>
       <Footer></Footer>
     </>

@@ -11,16 +11,17 @@ const Buscador = ({ onSearch, onSelect }) => {
       return;
     }
     const fetchResults = async () => {
-      try {
-        const response = await fetch(`http://localhost/bd-appqr/v1/user/buscador.php?query=${encodeURIComponent(query)}`);
-        const result = await response.json();
-        setResults(result.users);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchResults();
-  }, [query]);
+      if (typeof window !== 'undefined') {
+        try {
+          const response = await fetch(`https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/buscador.php?query=${encodeURIComponent(query)}`);
+          const result = await response.json();
+          setResults(result.users);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      fetchResults();
+    }}, [query]);
 
   const handleSearch = (event) => {
     const newQuery = event.target.value;
