@@ -216,7 +216,9 @@
   transition: 0.2s ease-in-out;
   text-transform: uppercase;
   text-shadow: 1px 1px 4px #282828;
-  position: relative;
+  position: absolute;
+  top: 125px;
+  left: 10px;
 }
 .icon-volver {
   width: 30px;

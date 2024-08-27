@@ -18,7 +18,7 @@ const RegisterForm = ({ register }) => {
     if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "https://andreatandem.tandempatrimonionacional.eu/bd-appqr/v1/user/register.php",
+        "https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/register.php",
         {
           method: "POST",
           headers: {
