@@ -9,26 +9,29 @@ const RegisterForm = ({ register }) => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const handleRegistro = async () => {
-    if (typeof window !== 'undefined') {
-      try {
-        const response = await fetch(
-          "https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/register.php",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email, password }),
-          }
-        );
-        const data = await response.json();
-        setMessage(data.message);
-      } catch (error) {
-        console.error("Error registrando usuario", error);
-        setMessage("Error en el registro");
+    try {
+      const response = await fetch(
+        "https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/register.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // No es necesario configurar el 'Access-Control-Allow-Origin' aquí; esto se debe hacer en el servidor
+          },
+          body: JSON.stringify({ name, email, password }),
+          mode: "cors", // CORS necesita ser configurado en el servidor
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Error en la respuesta del servidor");
       }
+      const data = await response.json();
+      setMessage(data.message);
+    } catch (error) {
+      console.error("Error registrando usuario", error);
+      setMessage("Error en el registro");
     }
-  };
+  };  
   const [styles, setStyles] = useState({
     length: "",
     number: "",
