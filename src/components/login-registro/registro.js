@@ -16,17 +16,17 @@ const RegisterForm = ({ register }) => {
 
   const handleRegistro = async () => {
     try {
-      const response = await fetch(
-        "https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/register.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ name, email, password }),
-          mode: "cors",
-        }
-      );
+        const response = await fetch(
+            "https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/register.php",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, email, password }),
+                mode: "cors", // o "no-cors" si no te importa no acceder a la respuesta
+            }
+        );
       const data = await response.json();
       setMessage(data.message);
     } catch (error) {
