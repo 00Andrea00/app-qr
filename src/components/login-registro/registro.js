@@ -19,10 +19,9 @@ const RegisterForm = ({ register }) => {
     try {
       const url = 'https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/register.php';
       const datos = {
-        nombre,
-        apellido,
-        email,
-        password
+        nombre: name,
+        email: email,
+        password: password,
       };
       const response = await fetch(url, {
         method: 'POST',
