@@ -24,7 +24,7 @@ const RegisterForm = ({ register }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ name, email, password }),
-          mode: "no-cors",
+          mode: "cors",
         }
       );
       const data = await response.json();
