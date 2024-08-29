@@ -9,19 +9,21 @@ const RegisterForm = ({ register }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [submitAttempted, setSubmitAttempted] = useState(false); // Nuevo estado para verificar si se intentó enviar
 
   const handleName = (e) => setName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
-  async function handleRegistro(event) {
-    event.preventDefault();
+  async function handleRegistro(values, actions) {
+    setSubmitAttempted(true); // Marcar que se ha intentado enviar el formulario
+
     try {
       const url = 'https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/register.php';
       const datos = {
-        nombre: name,
-        email: email,
-        password: password,
+        nombre: values.name,
+        email: values.email,
+        password: values.password,
       };
       const response = await fetch(url, {
         method: 'POST',
@@ -35,10 +37,11 @@ const RegisterForm = ({ register }) => {
       }
       const respuesta = await response.json();
       console.log('Usuario registrado con éxito:', respuesta);
-      setError(null);
+      setMessage('Usuario registrado con éxito');
+      actions.resetForm(); // Resetear el formulario después del envío exitoso
     } catch (error) {
       console.error('Error registrando usuario:', error);
-      setError(error.message);
+      setMessage(error.message);
     }
   }
 
@@ -125,8 +128,11 @@ const RegisterForm = ({ register }) => {
             .oneOf([Yup.ref("password"), null], "Las contraseñas no coinciden")
             .required("Campo obligatorio"),
         })}
+        validateOnChange={false} // Desactivar validación en cambio
+        validateOnBlur={false}   // Desactivar validación en desenfoque
+        onSubmit={handleRegistro}
       >
-        {({ setFieldValue, touched, errors }) => (
+        {({ setFieldValue, touched, errors, handleSubmit }) => (
           <Form className="register-form">
             <div className="field-group">
               <div className="name-input-container">
@@ -138,9 +144,12 @@ const RegisterForm = ({ register }) => {
                   placeholder="Introduce tu nombre"
                   id="Name"
                   value={name}
-                  onChange={handleName}
+                  onChange={(e) => {
+                    handleName(e);
+                    setFieldValue("name", e.target.value);
+                  }}
                 />
-                {touched.name && errors.name && (
+                {submitAttempted && touched.name && errors.name && (
                   <div className="error-message">{errors.name}</div>
                 )}
               </div>
@@ -153,9 +162,12 @@ const RegisterForm = ({ register }) => {
                   placeholder="Introduce tu email"
                   id="email"
                   value={email}
-                  onChange={handleEmail}
+                  onChange={(e) => {
+                    handleEmail(e);
+                    setFieldValue("email", e.target.value);
+                  }}
                 />
-                {touched.email && errors.email && (
+                {submitAttempted && touched.email && errors.email && (
                   <div className="error-message">{errors.email}</div>
                 )}
               </div>
@@ -226,7 +238,7 @@ const RegisterForm = ({ register }) => {
                     </span>
                   </div>
                 )}
-                {touched.password && errors.password && (
+                {submitAttempted && touched.password && errors.password && (
                   <div className="error-message">{errors.password}</div>
                 )}
               </div>
@@ -250,7 +262,7 @@ const RegisterForm = ({ register }) => {
                 </div>
               </div>
               <br></br>
-              {touched.confirmPassword && errors.confirmPassword && (
+              {submitAttempted && touched.confirmPassword && errors.confirmPassword && (
                 <div className="error-message-brook">{errors.confirmPassword}</div>
               )}
             </div>
@@ -266,7 +278,14 @@ const RegisterForm = ({ register }) => {
 
             <br />
 
-            <button type="submit" id="btn-enviar-registro" onClick={handleRegistro}>
+            <button
+              type="submit"
+              id="btn-enviar-registro"
+              onClick={() => {
+                setSubmitAttempted(true);
+                handleSubmit();
+              }}
+            >
               Enviar
             </button>
             {message && <p>{message}</p>}
