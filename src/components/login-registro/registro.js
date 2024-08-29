@@ -108,15 +108,22 @@ const RegisterForm = ({ register }) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .min(3, "Must be at least 3 characters")
-            .required("Campo obligatorio"),
+            .required("Campo obligatorio")
+            .when('name', {
+              is: (value) => value.length > 0,
+              then: (schema) => schema.min(3, "Debe tener al menos 3 caracteres")
+            }),
           email: Yup.string()
-            .email("Invalid email address")
+            .required("Campo obligatorio")
+            .when('email', {
+              is: (value) => value.length > 0,
+              then: (schema) => schema.email("Correo electrónico no válido")
+            }),
+          password: Yup.string()
             .required("Campo obligatorio"),
-          password: Yup.string().required("Campo obligatorio"),
           confirmPassword: Yup.string()
+            .required("Campo obligatorio")
             .oneOf([Yup.ref("password"), null], "Las contraseñas no coinciden")
-            .required("Campo obligatorio"),
         })}
       >
         {({ setFieldValue, touched, errors }) => (
