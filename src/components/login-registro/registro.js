@@ -27,10 +27,6 @@ const RegisterForm = ({ register }) => {
           mode: "cors",
         }
       );
-      if (!response.ok) {
-        throw new Error("Error en la respuesta del servidor");
-      }
-
       const data = await response.json();
       setMessage(data.message);
     } catch (error) {
@@ -38,30 +34,35 @@ const RegisterForm = ({ register }) => {
       setMessage("Error en el registro");
     }
   };
-    
+
   const [styles, setStyles] = useState({
     length: "",
     number: "",
     special: "",
   });
+  
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const capital = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
+  const numbers = "123456789".split("");
+  const special = "&@$%+#/*".split("");
+
+  const stylGreen = {
+    background: "rgba(102,255,102,0.2)",
+    borderColor: "rgb(102,255,102)",
+    color: "lightgreen",
+  };
+
+  const stylRed = {
+    background: "rgba(231,76,60,0.2)",
+    borderColor: "#e74c3c",
+    color: "#ff3f34",
+  };
+
   useEffect(() => {
     const validatePassword = () => {
-      const capital = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
-      const numbers = "123456789".split("");
-      const special = "&@$%+#/*".split("");
-      const stylGreen = {
-        background: "rgba(102,255,102,0.2)",
-        borderColor: "rgb(102,255,102)",
-        color: "lightgreen",
-      };
-      const stylRed = {
-        background: "rgba(231,76,60,0.2)",
-        borderColor: "#E74C3C",
-        color: "#FF3F34",
-      };
       let lengthStyle = password.length >= 8 ? stylGreen : stylRed;
       let numberStyle = numbers.some((char) => password.includes(char))
         ? stylGreen
@@ -69,6 +70,7 @@ const RegisterForm = ({ register }) => {
       let specialStyle = special.some((char) => password.includes(char))
         ? stylGreen
         : stylRed;
+
       setStyles({
         length: lengthStyle,
         number: numberStyle,
@@ -77,18 +79,23 @@ const RegisterForm = ({ register }) => {
     };
     validatePassword();
   }, [password]);
+
   const toggleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
+
   const toggleShowConfirmPassword = () => {
     setShowConfirmPassword((prevShowConfirmPassword) => !prevShowConfirmPassword);
   };
+
   const handleInputFocus = () => {
     setShowDropdown(true);
   };
+
   const handleInputBlur = () => {
     setShowDropdown(false);
   };
+
   return (
     <div className="form-register">
       <h1>Nuevo usuario</h1>
@@ -111,13 +118,6 @@ const RegisterForm = ({ register }) => {
             .oneOf([Yup.ref("password"), null], "Las contraseñas no coinciden")
             .required("Campo obligatorio"),
         })}
-        onSubmit={async (values, { setSubmitting }) => {
-          setName(values.name);
-          setEmail(values.email);
-          setPassword(values.password);
-          await handleRegistro();
-          setSubmitting(false);
-        }}
       >
         {({ setFieldValue, touched, errors }) => (
           <Form className="register-form">
@@ -130,10 +130,8 @@ const RegisterForm = ({ register }) => {
                   type="text"
                   placeholder="Introduce tu nombre"
                   id="Name"
-                  onChange={(e) => {
-                    setName(e.target.value);
-                    setFieldValue("name", e.target.value);
-                  }}
+                  value={name}
+                  onChange={handleName}
                 />
                 {touched.name && errors.name && (
                   <div className="error-message">{errors.name}</div>
@@ -147,16 +145,15 @@ const RegisterForm = ({ register }) => {
                   type="email"
                   placeholder="Introduce tu email"
                   id="email"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setFieldValue("email", e.target.value);
-                  }}
+                  value={email}
+                  onChange={handleEmail}
                 />
                 {touched.email && errors.email && (
                   <div className="error-message">{errors.email}</div>
                 )}
               </div>
             </div>
+
             <div className="field-group">
               <div>
                 <label htmlFor="password" className="label-register">Contraseña</label>
@@ -167,11 +164,13 @@ const RegisterForm = ({ register }) => {
                     type={showPassword ? "text" : "password"}
                     placeholder="Introduce tu Contraseña"
                     id="password"
+                    value={password}
                     onFocus={handleInputFocus}
                     onBlur={handleInputBlur}
                     onChange={(e) => {
                       setPassword(e.target.value);
                       setFieldValue("password", e.target.value);
+                      handlePassword(e);
                     }}
                   />
                   <button
@@ -190,7 +189,7 @@ const RegisterForm = ({ register }) => {
                         ...styles.length,
                         display: "block",
                         padding: "5px",
-                        color: "#4F4E4E",
+                        color: "#4f4e4e",
                         fontWeight: "bold",
                       }}
                     >
@@ -201,7 +200,7 @@ const RegisterForm = ({ register }) => {
                         ...styles.number,
                         display: "block",
                         padding: "5px",
-                        color: "#4F4E4E",
+                        color: "#4f4e4e",
                         fontWeight: "bold",
                       }}
                     >
@@ -212,7 +211,7 @@ const RegisterForm = ({ register }) => {
                         ...styles.special,
                         display: "block",
                         padding: "5px",
-                        color: "#4F4E4E",
+                        color: "#4f4e4e",
                         fontWeight: "bold",
                       }}
                     >
@@ -248,13 +247,19 @@ const RegisterForm = ({ register }) => {
                 <div className="error-message-brook">{errors.confirmPassword}</div>
               )}
             </div>
+
             <br />
             <br />
+
             <Cuadrado />
+
             <br />
+
             <ContactLink />
+
             <br />
-            <button type="submit" id="btn-enviar-registro">
+
+            <button type="submit" id="btn-enviar-registro" onClick={handleRegistro}>
               Enviar
             </button>
             {message && <p>{message}</p>}
@@ -264,4 +269,5 @@ const RegisterForm = ({ register }) => {
     </div>
   );
 };
+
 export default RegisterForm;
