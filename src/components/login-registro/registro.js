@@ -3,11 +3,17 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Cuadrado from "../Cuadrado/cuadrado";
 import ContactLink from "../modals/modalregistro/contactlink";
+
 const RegisterForm = ({ register }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const handleName = (e) => setName(e.target.value);
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePassword = (e) => setPassword(e.target.value);
+
   const handleRegistro = async () => {
     try {
       const response = await fetch(
@@ -16,22 +22,23 @@ const RegisterForm = ({ register }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // No es necesario configurar el 'Access-Control-Allow-Origin' aquí; esto se debe hacer en el servidor
           },
           body: JSON.stringify({ name, email, password }),
-          mode: "cors", // CORS necesita ser configurado en el servidor
+          mode: "cors",
         }
       );
       if (!response.ok) {
         throw new Error("Error en la respuesta del servidor");
       }
+
       const data = await response.json();
       setMessage(data.message);
     } catch (error) {
       console.error("Error registrando usuario", error);
       setMessage("Error en el registro");
     }
-  };  
+  };
+    
   const [styles, setStyles] = useState({
     length: "",
     number: "",
@@ -173,7 +180,7 @@ const RegisterForm = ({ register }) => {
                     className="toggle-password-button"
                     onClick={toggleShowPassword}
                   >
-                    {showPassword ? ":eye:​" : ":eye-in-speech-bubble:"}
+                    {showPassword ? "👁️​" : "👁️‍🗨️"}
                   </button>
                 </div>
                 {showDropdown && (
@@ -232,7 +239,7 @@ const RegisterForm = ({ register }) => {
                     className="toggle-password-button"
                     onClick={toggleShowConfirmPassword}
                   >
-                    {showConfirmPassword ? ":eye:​" : ":eye-in-speech-bubble:"}
+                    {showConfirmPassword ? "👁️​" : "👁️‍🗨️"}
                   </button>
                 </div>
               </div>
