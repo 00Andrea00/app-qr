@@ -24,7 +24,7 @@ const RegisterForm = ({ register }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ name, email, password }),
-          mode: "cors",
+          mode: "no-cors",
         }
       );
       const data = await response.json();
@@ -40,7 +40,7 @@ const RegisterForm = ({ register }) => {
     number: "",
     special: "",
   });
-  
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
