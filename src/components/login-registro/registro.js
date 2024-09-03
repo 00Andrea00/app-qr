@@ -3,25 +3,21 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Cuadrado from "../Cuadrado/cuadrado";
 import ContactLink from "../modals/modalregistro/contactlink";
-
 const RegisterForm = ({ register }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [submitAttempted, setSubmitAttempted] = useState(false); // Nuevo estado para verificar si se intentó enviar
-
   const handleName = (e) => setName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
-
   async function handleRegistro(values, actions) {
     setSubmitAttempted(true); // Marcar que se ha intentado enviar el formulario
-
     try {
       const url = 'https://vigas.tandempatrimonionacional.eu/bdappqr/v1/user/register.php';
       const datos = {
-        nombre: values.name,
+        name: values.name,   // Cambié "nombre" a "name"
         email: values.email,
         password: values.password,
       };
@@ -44,33 +40,27 @@ const RegisterForm = ({ register }) => {
       setMessage(error.message);
     }
   }
-
   const [styles, setStyles] = useState({
     length: "",
     number: "",
     special: "",
   });
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-
   const capital = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
   const numbers = "123456789".split("");
   const special = "&@$%+#/*".split("");
-
   const stylGreen = {
     background: "rgba(102,255,102,0.2)",
     borderColor: "rgb(102,255,102)",
     color: "lightgreen",
   };
-
   const stylRed = {
     background: "rgba(231,76,60,0.2)",
-    borderColor: "#e74c3c",
-    color: "#ff3f34",
+    borderColor: "#E74C3C",
+    color: "#FF3F34",
   };
-
   useEffect(() => {
     const validatePassword = () => {
       let lengthStyle = password.length >= 8 ? stylGreen : stylRed;
@@ -80,7 +70,6 @@ const RegisterForm = ({ register }) => {
       let specialStyle = special.some((char) => password.includes(char))
         ? stylGreen
         : stylRed;
-
       setStyles({
         length: lengthStyle,
         number: numberStyle,
@@ -89,23 +78,18 @@ const RegisterForm = ({ register }) => {
     };
     validatePassword();
   }, [password]);
-
   const toggleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-
   const toggleShowConfirmPassword = () => {
     setShowConfirmPassword((prevShowConfirmPassword) => !prevShowConfirmPassword);
   };
-
   const handleInputFocus = () => {
     setShowDropdown(true);
   };
-
   const handleInputBlur = () => {
     setShowDropdown(false);
   };
-
   return (
     <div className="form-register">
       <h1>Nuevo usuario</h1>
@@ -172,7 +156,6 @@ const RegisterForm = ({ register }) => {
                 )}
               </div>
             </div>
-
             <div className="field-group">
               <div>
                 <label htmlFor="password" className="label-register">Contraseña</label>
@@ -208,7 +191,7 @@ const RegisterForm = ({ register }) => {
                         ...styles.length,
                         display: "block",
                         padding: "5px",
-                        color: "#4f4e4e",
+                        color: "#4F4E4E",
                         fontWeight: "bold",
                       }}
                     >
@@ -219,7 +202,7 @@ const RegisterForm = ({ register }) => {
                         ...styles.number,
                         display: "block",
                         padding: "5px",
-                        color: "#4f4e4e",
+                        color: "#4F4E4E",
                         fontWeight: "bold",
                       }}
                     >
@@ -230,7 +213,7 @@ const RegisterForm = ({ register }) => {
                         ...styles.special,
                         display: "block",
                         padding: "5px",
-                        color: "#4f4e4e",
+                        color: "#4F4E4E",
                         fontWeight: "bold",
                       }}
                     >
@@ -266,34 +249,24 @@ const RegisterForm = ({ register }) => {
                 <div className="error-message-brook">{errors.confirmPassword}</div>
               )}
             </div>
-
             <br />
             <br />
-
             <Cuadrado />
-
             <br />
-
             <ContactLink />
-
             <br />
-
             <button
               type="submit"
               id="btn-enviar-registro"
-              onClick={() => {
-                setSubmitAttempted(true);
-                handleSubmit();
-              }}
+              className="btn-enviar-registro"
             >
               Enviar
             </button>
-            {message && <p>{message}</p>}
+            {message && <p className="error-message-brook">{message}</p>}
           </Form>
         )}
       </Formik>
     </div>
   );
 };
-
 export default RegisterForm;
