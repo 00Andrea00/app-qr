@@ -12,7 +12,7 @@ const LoginForm = ({ login }) => {
     if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/login.php",
+        "https://vigas.tandempatrimonionacional.eu/bdappqr/v1/user/login.php",
         {
           method: "POST",
           headers: {
