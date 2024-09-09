@@ -43,7 +43,7 @@ const RegisterForm = ({ register }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
 
-  const capital = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("")
+  const capital = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
   const numbers = "123456789".split("")
   const special = "&@$%+#/*".split("")
 
