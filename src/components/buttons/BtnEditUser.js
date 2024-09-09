@@ -14,10 +14,9 @@ function BtnUserEdit({ mailto, updateUserName }) {
   const [responseMessage, setResponseMessage] = useState("")
 
   const handleChangeName = async () => {
-    if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "https://andreatandem/bdappqr/v1/user/change-name.php",
+        "https://vigas.tandempatrimonionacional.eu/andrea/v1/user/change-name.php",
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -34,7 +33,7 @@ function BtnUserEdit({ mailto, updateUserName }) {
       console.error("Error al cambiar el nombre:", error)
       setResponseMessage("Error al cambiar el nombre")
     }
-    }}
+  }
 
   const handleChangePassword = async () => {
     try {

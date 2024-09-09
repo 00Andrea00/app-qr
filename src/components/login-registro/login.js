@@ -9,10 +9,9 @@ const LoginForm = ({ login }) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleLogin = async (values, { setSubmitting }) => {
-    if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "https://vigas.tandempatrimonionacional.eu/bdappqr/v1/user/login.php",
+        "https://vigas.tandempatrimonionacional.eu/andrea/v1/user/login.php",
         {
           method: "POST",
           headers: {
@@ -38,7 +37,7 @@ const LoginForm = ({ login }) => {
     } finally {
       setSubmitting(false)
     }
-    }}
+  }
 
   const toggleShowPassword = () => {
     setShowPassword(prevShowPassword => !prevShowPassword)
@@ -65,7 +64,6 @@ const LoginForm = ({ login }) => {
               />
               <ErrorMessage name="email" />
             </div>
-
             <label htmlFor="password" className="label-login">Contraseña</label>
             <div className="password-input-container">
               <Field

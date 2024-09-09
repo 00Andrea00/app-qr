@@ -6,7 +6,7 @@ import "../modals/modal.css"
 function BtnMasInfo({ mailto }) {
   const [mail] = useState(mailto)
   const [isOpen, setIsOpen] = useState(false)
-  const [userInfo, setUserInfo] = useState(null) // Estado para almacenar la información del usuario
+  const [userInfo, setUserInfo] = useState(null)
   const modalRef = useRef(null)
 
   const handleClickOutside = event => {
@@ -39,8 +39,7 @@ function BtnMasInfo({ mailto }) {
   }
 
   const fetchUserInfo = () => {
-    if (typeof window !== 'undefined'){
-    fetch("https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/user/info-user.php", {
+    fetch("https://vigas.tandempatrimonionacional.eu/andrea/v1/user/info-user.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +53,7 @@ function BtnMasInfo({ mailto }) {
       .catch(error => {
         console.error("Error fetching user info:", error)
       })
-    }}
+  }
 
   return (
     <React.Fragment>

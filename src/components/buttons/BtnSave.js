@@ -10,12 +10,12 @@ function BtnSave({ qrName, qrColor, qrSize, qrValue, createdBy }) {
   const handleSave = () => {
     const qrData = {
       name_qr: qrName,
-      description: qrValue,  // Asumiendo que `qrValue` es la descripción
+      description: qrValue,
       color_qr: qrColor,
       created_by: createdBy,
     };
 
-    fetch("https://andreatandem.tandempatrimonionacional.eu/bdappqr/v1/qr/save-qr.php", {
+    fetch("https://vigas.tandempatrimonionacional.eu/andrea/v1/qr/save-qr.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

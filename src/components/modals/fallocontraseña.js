@@ -26,10 +26,9 @@ const FalloContraseña = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (typeof window !== 'undefined') {
     try {
       const response = await fetch(
-        "https://andreatandem.tandempatrimonionacional.eu/bd-appqr/v1/user/email.php",
+        "https://vigas.tandempatrimonionacional.eu/andrea/v1/user/email.php",
         {
           method: "POST",
           headers: {
@@ -44,7 +43,7 @@ const FalloContraseña = () => {
       console.error("Error al enviar correo", error);
       setMessage("Error al enviar correo");
     }
-  }};
+  };
 
   return (
     <div>
